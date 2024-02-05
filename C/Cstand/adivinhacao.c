@@ -83,10 +83,6 @@ int main()
     printf("pontos = %.1f\n", totalpontos);
 
     //confere se o término foi por acerto ou por tentativas
-    if (acerto)
-    {
-        printf("Você ganhou!\n");
-    }
-
+    
     return 0;
 }
