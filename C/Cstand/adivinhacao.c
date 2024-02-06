@@ -2,14 +2,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-//#define limite 3
-//#define ns 42
+//#define limite 5
 #define pontos 1000
 
 int main()
 {
     printf("* Bem-vindo ao nosso jogo de adivinhação *\n");
-    printf("Tente adivinhar o número!\n");
 
     //dá um valor aleatório ao número
     int ns;
@@ -24,12 +22,28 @@ int main()
     double totalpontos;
     double diferenca;
 
+    int nivel, limite;
+    printf("Qual o nível de dificuldade?\nDigite (1)Fácil (2)Médio (3)Difícil\n");
+    scanf("%i",&nivel);
+
+    switch(nivel){
+        case 1: limite = 20;
+        break;
+        case 2: limite = 10;
+        break;
+        case 3: limite = 6;
+        break;
+    }
+    
+    printf("Tente adivinhar o número!\n");
+
     acerto = (chute == ns);
 
     //limitadores são 3 tentativas(contador < limite && ) ou ter acertado
-    while (!acerto)
+    while (contador < limite && !acerto)
     {
-
+        printf("tentativas %i \n",limite-contador);
+        
         scanf("%i", &chute);
         acerto = (ns == chute);
 
@@ -46,12 +60,14 @@ int main()
         //confere se acertou
         if (acerto)
         {
-            printf("Você ganhou!\n");
-            // return 0;
+            break;
         }
         //se nao acertou, informa se é maior ou menor
         else
         {
+            //aumenta o contador de tentativas
+            contador++;
+            
             if (chute < ns)
             {
                 printf("o chute foi menor que o número!\n");
@@ -59,24 +75,25 @@ int main()
             else
             {
                 printf("o chute foi maior que o número!\n");
-            }
-            printf("tente novamente:\n");
+            }            
             
+            if(contador< limite) printf("tente novamente:\n");
         }
         
         //calcula o módulo da diferença do chute e do número
         diferenca += abs(chute - ns)/2.0;
 
-        //aumenta o contador de tentativas
-        contador++;
         
-        //printf("tentativas %i \n",limite-contador);
     }
 
-    //informa se atingiu o limite de tentativas
-    //if (contador == limite && !acerto)
-    //    printf("limite de tentativas atingido\n");
+    printf("-----------------\nFIM DE JOGO\n");
 
+    //informa se atingiu o limite de tentativas
+    if (contador == limite && !acerto)
+        printf("limite de tentativas atingido\n");
+
+    if (acerto)
+        printf("Você ganhou!!!\n");
     //calcula o total de pontos
     totalpontos = pontos - diferenca;
 
