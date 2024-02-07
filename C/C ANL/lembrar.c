@@ -1,19 +1,19 @@
 #include <stdio.h>
 
+
+void teste(int *num){
+ *num = *num + 1;
+
+}
+
 int main(){
+    int numero=5;
 
-    char a = 'a';
-    char teste[5] = {'v','i','n','t','e'};
+    printf("%i\n",numero);
+    
+    teste(&numero);
 
-    int dez = 10;
-    int ara[3] = {24,23,40};
-
-    printf("%c\n\%s\n",a,teste);
-
-    printf("\n%i\n",dez);
-    for(int i=0;i<sizeof(ara)/sizeof(int);i++){
-        printf("%i\n",ara[i]);
-    }
+    printf("%i\n",numero);
 
     return 0;
 }
