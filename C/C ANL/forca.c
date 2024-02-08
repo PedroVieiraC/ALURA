@@ -8,33 +8,49 @@ typedef struct
 {
 } Controle;
 
-void welcome(){
+void welcome()
+{
     printf("Welcome to hangman game!!!\n");
-    printf("      +---+       \n");  
-    printf("      |   |       \n");  
-    printf("      O   |       \n");  
-    printf("     /|\\  |       \n");  
-    printf("     / \\  |       \n");  
-    printf("          |       \n");  
+    printf("      +---+       \n");
+    printf("      |   |       \n");
+    printf("      O   |       \n");
+    printf("     /|\\  |       \n");
+    printf("     / \\  |       \n");
+    printf("          |       \n");
     printf("    ========='''] \n");
 }
 
-char fguess(char guess, char guess_storage[], int *tryes){
-        scanf(" %c", &guess);
-        guess = tolower(guess);
+char fguess(char guess, char guess_storage[], int *tryes)
+{
+    scanf(" %c", &guess);
+    guess = tolower(guess);
 
-        guess_storage[*tryes] = guess;
-        *tryes = *tryes+1;
+    guess_storage[*tryes] = guess;
+    *tryes = *tryes + 1;
 
     return guess;
 }
 
-int main() {
-    //declaração palavra secreta
-    
+void alrguessed(int* found, char guess_storage[], char secretword[], int tryes, int i)
+{
+    for (int j = 0; j < tryes; j++)
+    {
+
+        if (guess_storage[j] == secretword[i])
+        {
+            *found = 1;
+            break;
+        }
+    }
+}
+
+int main()
+{
+    // declaração palavra secreta
+
     char secretword[20];
 
-    //write in
+    // write in
     sprintf(secretword, "teste");
 
     int hit = 0, lose = 0;
@@ -42,45 +58,42 @@ int main() {
     char guess_storage[26];
     int tryes = 0;
 
-    //welcome
+    // welcome
     welcome();
-    
-    do {
-        for(int i=0;i<strlen(secretword);i++){
 
-            int found=0;
+    do
+    {
+        for (int i = 0; i < strlen(secretword); i++)
+        {
 
-            for(int j=0; j<tryes;j++){
-                
-                if(guess_storage[j] == secretword[i]){
-                    found = 1;
-                    break;
-                } 
+            int found = 0;
 
-            }
-            if(found) printf("%c",secretword[i]);
-            else printf("_");
+            //changes found value to 1 if the letter was already used
+            alrguessed(&found,guess_storage,secretword,tryes,i);
 
+            //if found, prints the letter, else print the underscore
+            if (found)
+                printf("%c", secretword[i]);
+            else
+                printf("_");
+        }
+        printf("\n");
 
-
-        } printf("\n");
-
+        //start a char and store the letter in the guess array
         char guess;
-        fguess(guess, guess_storage,&tryes);
+        fguess(guess, guess_storage, &tryes);
 
-
-        for(int i=0;i<strlen(secretword);i++){
-            if(guess == secretword[i]){
-                printf("letter %c in %i position\n",guess,i+1);
+        for (int i = 0; i < strlen(secretword); i++)
+        {
+            if (guess == secretword[i])
+            {
+                printf("letter %c in %i position\n", guess, i + 1);
             }
         }
 
-      
-    }while(!hit && !lose);
+    } while (!hit && !lose);
 
-
-
-    //printf("%s",secretword);
+    // printf("%s",secretword);
 
     return 0;
 }
