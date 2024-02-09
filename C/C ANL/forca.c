@@ -3,9 +3,10 @@
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
 #include "header.h"
 
-char secretword[20];
+char secretword[100];
 char guess_storage[26];
 int tryes = 0, misstryes = 0, limit, difficulty;
 
@@ -46,14 +47,39 @@ void pressets()
 // void to choose the secret word
 void secretwordchoose()
 {
-    sprintf(secretword, "teste");
-}
 
+    FILE *f;
+    f = fopen("words.txt", "r");
+
+    if (f == NULL)
+    {
+        printf("Erro ao abrir o arquivo\n");
+        exit(1);
+    }
+
+    int amword;
+    fscanf(f, "%d", &amword);
+
+    srand(time(0));
+    int line = rand() % amword;
+
+    for (int i = 0; i < line; i++)
+    {
+        fscanf(f, "%s", secretword);
+    }
+
+    for (int i = 0; i < strlen(secretword); i++)
+    {
+        secretword[i] = tolower(secretword[i]);
+    }
+
+    fclose(f);
+    // sprintf(secretword, "teste");
+}
 void missdrawer()
 {
     if ((misstryes <= 0 && difficulty == 1) || (misstryes <= 2 && difficulty == 2) || (misstryes <= 4 && difficulty == 3))
     {
-        printf("\nprintou porque misstryes %i e difficulty %i\n",misstryes, difficulty);
         printf("        +---+             \n");
         printf("        |   |             \n");
         printf("        O   |             \n");
@@ -64,7 +90,6 @@ void missdrawer()
     }
     else if ((misstryes <= 1 && difficulty == 1) || (misstryes <= 4 && difficulty == 2) || (misstryes <= 8 && difficulty == 3))
     {
-                printf("\nprintou porque misstryes %i e difficulty %i\n",misstryes, difficulty);
         printf("        +---+             \n");
         printf("        |   |             \n");
         printf("        O   |             \n");
@@ -75,7 +100,6 @@ void missdrawer()
     }
     else if ((misstryes <= 2 && difficulty == 1) || (misstryes <= 6 && difficulty == 2) || (misstryes <= 12 && difficulty == 3))
     {
-                printf("\nprintou porque misstryes %i e difficulty %i\n",misstryes, difficulty);
         printf("        +---+             \n");
         printf("        |   |             \n");
         printf("        O   |             \n");
@@ -86,7 +110,6 @@ void missdrawer()
     }
     else if ((misstryes <= 3 && difficulty == 1) || (misstryes <= 8 && difficulty == 2) || (misstryes <= 16 && difficulty == 3))
     {
-                printf("\nprintou porque misstryes %i e difficulty %i\n",misstryes, difficulty);
         printf("        +---+             \n");
         printf("        |   |             \n");
         printf("        O   |             \n");
@@ -97,7 +120,6 @@ void missdrawer()
     }
     else if ((misstryes <= 4 && difficulty == 1) || (misstryes <= 10 && difficulty == 2) || (misstryes < 20 && difficulty == 3))
     {
-                printf("\nprintou porque misstryes %i e difficulty %i\n",misstryes, difficulty);
         printf("        +---+             \n");
         printf("        |   |             \n");
         printf("        O   |             \n");
@@ -116,17 +138,15 @@ void missdrawer()
         printf("            |             \n");
         printf("        =========''', ''' \n");
     }
-    printf("misses %i\n", misstryes);
+    printf("You already gave %i guesses\n", misstryes);
 }
 // function that manage the game work
 void game()
 {
-    printf("You already gave %i guesses\n", tryes);
-
     for (int i = 0; i < strlen(secretword); i++)
     {
         // if found, prints the letter, else print the underscore
-        if (alrguessed(secretword[i]))
+        if (correcttry(secretword[i]))
             printf("%c", secretword[i]);
         else
             printf("_");
@@ -144,14 +164,14 @@ void fguess()
 
     guess_storage[tryes] = guess;
 
-    misscounter();
+    misscounter(guess);
 
     if (miss())
         tryes++;
 }
 
 // function to verify if the guess are in the secret word
-int alrguessed(char letter)
+int correcttry(char letter)
 {
     int found = 0;
     for (int j = 0; j < tryes; j++)
@@ -184,11 +204,12 @@ int miss()
     return exist;
 }
 
+
 // function that helps the printer off game
-int misscounter()
+int misscounter(char guess)
 {
     int exist = 0;
-
+    // for to looks if the letter are in the word
     for (int j = 0; j < strlen(secretword); j++)
     {
         if (guess_storage[tryes] == secretword[j])
@@ -196,12 +217,14 @@ int misscounter()
             exist = 1;
         }
     }
-    if (!exist)
+
+    int alrused = 0;
+    // for to looks if the letter has already be used
+    
+    if (!exist && !alrused)
     {
-        printf("se nao existe sobe 1 misstryes %i\n", misstryes);
         misstryes++;
     }
-    printf("\n!exist %i e exist %i\n", !exist, exist);
 
     return exist;
 }
@@ -211,7 +234,7 @@ int win()
 {
     for (int i = 0; i < strlen(secretword); i++)
     {
-        if (!alrguessed(secretword[i]))
+        if (!correcttry(secretword[i]))
         {
             return 0;
         }
@@ -219,12 +242,23 @@ int win()
     return 1;
 }
 
+void endgame()
+{
+    missdrawer();
+    if (win())
+    {
+        printf("YOU WIN!!!\n");
+    }
+    else
+    {
+        printf("YOU LOSE, TRY AGAIN!\n");
+    }
+    printf("secret word was %s\n", secretword);
+}
+
 int main()
 {
     // declaração palavra secreta
-
-    int hit = 0;
-
     start();
 
     secretwordchoose(secretword);
@@ -237,17 +271,7 @@ int main()
 
     } while (!win() && !lose());
 
-    if (win())
-    {
-        missdrawer();
-        printf("YOU WIN!!!\n");
-        printf("secret word was %s\n", secretword);
-    }
-    else
-    {
-        missdrawer();
-        printf("YOU LOSE, TRY AGAIN!\n");
-    }
+    endgame();
 
     return 0;
 }
