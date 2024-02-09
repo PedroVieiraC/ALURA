@@ -7,9 +7,9 @@
 
 char secretword[20];
 char guess_storage[26];
-int tryes = 0,misstryes=0, limit, difficulty;
+int tryes = 0, misstryes = 0, limit, difficulty;
 
-//function to give welcome to user 
+// function to give welcome to user
 void start()
 {
     printf("      +---+       \n");
@@ -22,8 +22,9 @@ void start()
     printf("Welcome to hangman game!!!\n");
     pressets();
 }
-//function to set difficult 
-void pressets(){
+// function to set difficult
+void pressets()
+{
     printf("Choose the difficulty. \n(1)Easy (2)Medium (3)Hard\n");
     scanf("%i", &difficulty);
     switch (difficulty)
@@ -37,77 +38,87 @@ void pressets(){
     case 3:
         limit = 20;
         break;
-    default: limit = 1;
+    default:
+        limit = 1;
         break;
     }
 }
-//void to choose the secret word
+// void to choose the secret word
 void secretwordchoose()
 {
     sprintf(secretword, "teste");
 }
 
-void missdrawer(){
-    printf("misst %i\n",misstryes);
-    if((misstryes == 0 && difficulty==1) ||(misstryes == 0 && difficulty==2) ||(misstryes == 0 && difficulty==3) ){
-    printf("        +---+             \n"); 
-    printf("        |   |             \n");  
-    printf("        O   |             \n");
-    printf("            |             \n");  
-    printf("            |             \n");  
-    printf("            |             \n");  
-    printf("        =========''', ''' \n");
+void missdrawer()
+{
+    if ((misstryes <= 0 && difficulty == 1) || (misstryes <= 2 && difficulty == 2) || (misstryes <= 4 && difficulty == 3))
+    {
+        printf("\nprintou porque misstryes %i e difficulty %i\n",misstryes, difficulty);
+        printf("        +---+             \n");
+        printf("        |   |             \n");
+        printf("        O   |             \n");
+        printf("            |             \n");
+        printf("            |             \n");
+        printf("            |             \n");
+        printf("        =========''', ''' \n");
     }
-    if((misstryes == 1 && difficulty==1) ||(misstryes == 2 && difficulty==2) ||(misstryes == 4 && difficulty==3) ){
-    printf("        +---+             \n"); 
-    printf("        |   |             \n");  
-    printf("        O   |             \n");
-    printf("        |   |             \n");  
-    printf("            |             \n");  
-    printf("            |             \n");  
-    printf("        =========''', ''' \n");
+    else if ((misstryes <= 1 && difficulty == 1) || (misstryes <= 4 && difficulty == 2) || (misstryes <= 8 && difficulty == 3))
+    {
+                printf("\nprintou porque misstryes %i e difficulty %i\n",misstryes, difficulty);
+        printf("        +---+             \n");
+        printf("        |   |             \n");
+        printf("        O   |             \n");
+        printf("        |   |             \n");
+        printf("            |             \n");
+        printf("            |             \n");
+        printf("        =========''', ''' \n");
     }
-    if((misstryes == 2 && difficulty==1) ||(misstryes == 4 && difficulty==2) ||(misstryes == 8 && difficulty==3) ){
-    printf("        +---+             \n"); 
-    printf("        |   |             \n");  
-    printf("        O   |             \n");
-    printf("       /|   |             \n");  
-    printf("            |             \n");  
-    printf("            |             \n");  
-    printf("        =========''', ''' \n");
+    else if ((misstryes <= 2 && difficulty == 1) || (misstryes <= 6 && difficulty == 2) || (misstryes <= 12 && difficulty == 3))
+    {
+                printf("\nprintou porque misstryes %i e difficulty %i\n",misstryes, difficulty);
+        printf("        +---+             \n");
+        printf("        |   |             \n");
+        printf("        O   |             \n");
+        printf("       /|   |             \n");
+        printf("            |             \n");
+        printf("            |             \n");
+        printf("        =========''', ''' \n");
     }
-    if((misstryes == 3 && difficulty==1) ||(misstryes == 6 && difficulty==2) ||(misstryes == 12 && difficulty==3)) {
-    printf("        +---+             \n"); 
-    printf("        |   |             \n");  
-    printf("        O   |             \n");
-    printf("       /|\\  |             \n");  
-    printf("            |             \n");  
-    printf("            |             \n");  
-    printf("        =========''', ''' \n");
+    else if ((misstryes <= 3 && difficulty == 1) || (misstryes <= 8 && difficulty == 2) || (misstryes <= 16 && difficulty == 3))
+    {
+                printf("\nprintou porque misstryes %i e difficulty %i\n",misstryes, difficulty);
+        printf("        +---+             \n");
+        printf("        |   |             \n");
+        printf("        O   |             \n");
+        printf("       /|\\  |             \n");
+        printf("            |             \n");
+        printf("            |             \n");
+        printf("        =========''', ''' \n");
     }
-    if((misstryes == 4 && difficulty==1) ||(misstryes == 8 && difficulty==2) ||(misstryes == 16 && difficulty==3) ){
-    printf("        +---+             \n"); 
-    printf("        |   |             \n");  
-    printf("        O   |             \n");
-    printf("       /|\\  |             \n");  
-    printf("       /    |             \n");  
-    printf("            |             \n");  
-    printf("        =========''', ''' \n");
+    else if ((misstryes <= 4 && difficulty == 1) || (misstryes <= 10 && difficulty == 2) || (misstryes < 20 && difficulty == 3))
+    {
+                printf("\nprintou porque misstryes %i e difficulty %i\n",misstryes, difficulty);
+        printf("        +---+             \n");
+        printf("        |   |             \n");
+        printf("        O   |             \n");
+        printf("       /|\\  |             \n");
+        printf("       /    |             \n");
+        printf("            |             \n");
+        printf("        =========''', ''' \n");
     }
-    if((tryes == 5 && difficulty==1) ||(tryes == 10 && difficulty==2) ||(tryes == 20 && difficulty==3) ){
-    printf("        +---+             \n"); 
-    printf("        |   |             \n");  
-    printf("        O   |             \n");
-    printf("       /|\\  |             \n");  
-    printf("       / \\  |             \n");  
-    printf("            |             \n");  
-    printf("        =========''', ''' \n");
+    else if ((misstryes == 5 && difficulty == 1) || (misstryes == 10 && difficulty == 2) || (misstryes == 20 && difficulty == 3))
+    {
+        printf("        +---+             \n");
+        printf("        |   |             \n");
+        printf("        O   |             \n");
+        printf("       /|\\  |             \n");
+        printf("       / \\  |             \n");
+        printf("            |             \n");
+        printf("        =========''', ''' \n");
     }
-
-    
-
+    printf("misses %i\n", misstryes);
 }
-//function that manage the game work
+// function that manage the game work
 void game()
 {
     printf("You already gave %i guesses\n", tryes);
@@ -132,7 +143,11 @@ void fguess()
     guess = tolower(guess);
 
     guess_storage[tryes] = guess;
-    tryes++;
+
+    misscounter();
+
+    if (miss())
+        tryes++;
 }
 
 // function to verify if the guess are in the secret word
@@ -153,44 +168,42 @@ int alrguessed(char letter)
 // function to see if the misses are the same as the limit
 int lose()
 {
-    int miss = 0;
-    for (int i = 0; i < tryes; i++)
-    {
-        int exist = 0;
-
-        for (int j = 0; j < strlen(secretword); j++)
-        {
-            if (guess_storage[i] == secretword[j])
-            {
-                exist = 1;
-                break;
-            }
-        }
-        if (!exist)
-            miss++;
-    }
-    printf("miss = %i\n", miss);
-    return miss >= limit;
+    return misstryes >= limit;
 }
-//miss counter
+
+int miss()
+{
+    int exist = 0;
+    for (int i = 0; i < strlen(secretword); i++)
+    {
+        if (guess_storage[tryes] == secretword[i])
+        {
+            exist = 1;
+        }
+    }
+    return exist;
+}
+
+// function that helps the printer off game
 int misscounter()
 {
-    for (int i = 0; i < tryes; i++)
-    {
-        int exist = 0;
+    int exist = 0;
 
-        for (int j = 0; j < strlen(secretword); j++)
+    for (int j = 0; j < strlen(secretword); j++)
+    {
+        if (guess_storage[tryes] == secretword[j])
         {
-            if (guess_storage[i] == secretword[j])
-            {
-                exist = 1;
-                break;
-            }
+            exist = 1;
         }
-        if (!exist)
-            misstryes++;
     }
-    
+    if (!exist)
+    {
+        printf("se nao existe sobe 1 misstryes %i\n", misstryes);
+        misstryes++;
+    }
+    printf("\n!exist %i e exist %i\n", !exist, exist);
+
+    return exist;
 }
 
 // function to see if all the letters of sw was already guessed
@@ -220,15 +233,15 @@ int main()
     {
         game();
         fguess();
-        misscounter();
         missdrawer();
-        
+
     } while (!win() && !lose());
 
-    if (win()){
+    if (win())
+    {
         missdrawer();
         printf("YOU WIN!!!\n");
-        printf("secret word was %s\n",secretword);
+        printf("secret word was %s\n", secretword);
     }
     else
     {

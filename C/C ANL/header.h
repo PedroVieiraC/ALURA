@@ -7,3 +7,5 @@ void fguess();
 int alrguessed(char letter);
 int lose();
 int win();
+int misscounter();
+int miss();
