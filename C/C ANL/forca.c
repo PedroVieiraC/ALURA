@@ -6,8 +6,8 @@
 #include <time.h>
 #include "header.h"
 
-char secretword[100];
-char guess_storage[26];
+char secretword[WORD_SIZE];
+char guess_storage[STORAGE_SIZE];
 int tryes = 0, misstryes = 0, limit, difficulty;
 
 // function to give welcome to user
@@ -26,7 +26,7 @@ void start()
 // function to set difficult
 void pressets()
 {
-    printf("Choose the difficulty. \n(1)Easy (2)Medium (3)Hard\n");
+    printf("Choose the difficulty. \n(1)Hard (2)Medium (3)Easy\n");
     scanf("%i", &difficulty);
     switch (difficulty)
     {
@@ -154,6 +154,7 @@ void game()
     printf("\n");
 }
 
+
 // function to guess a letter in the game
 void fguess()
 {
@@ -247,13 +248,66 @@ void endgame()
     missdrawer();
     if (win())
     {
-        printf("YOU WIN!!!\n");
+    printf("          .-=========-.     \n");
+    printf("          \\'-=======-'/    \n");
+    printf("          _|   .=.   |_     \n");
+    printf("         ((|  {{1}}  |))    \n");
+    printf("          \\|   /|\\   |/   \n");
+    printf("           \\__ '`' __/     \n");
+    printf("             _`) (`_        \n");
+    printf("           _/_______\\_     \n");
+    printf("          /___________\\    \n");
+    printf("            YOU WIN!!!      \n");
     }
     else
     {
-        printf("YOU LOSE, TRY AGAIN!\n");
+printf("   ____  __  __   _   ______     \n");
+printf("  / __ \\/ / / /  / | / / __ \\  \n");
+printf(" / / / / /_/ /  /  |/ / / / /    \n");
+printf("/ /_/ / __  /  / /|  / /_/ /     \n");
+printf("\\____/_/ /_/  /_/ |_/\\____/    \n");
+printf("    YOU LOSE, TRY AGAIN!         \n");
     }
     printf("secret word was %s\n", secretword);
+    addword();
+}
+
+void addword(){
+    printf("Do you want to add a new word in the game?\n (Y)Yes (N)No\n");
+    char choose;
+
+    scanf(" %c",&choose);
+    
+    if(tolower(choose) == 'y'){
+        
+        char newword[WORD_SIZE];
+        printf("Write the new word\n");
+        scanf("%s",newword);
+
+        FILE *f;
+
+        f = fopen("words.txt","r+");
+
+        if(f == 0){
+            printf("Impossível abrir o arquivo\n");
+            exit(1);
+        }
+
+        int qtt;
+        fscanf(f,"%i",&qtt);
+        qtt++;
+
+        fseek(f,0,SEEK_SET);
+
+        fprintf(f,"%d",qtt);
+
+        fseek(f,0,SEEK_END);
+
+        fprintf(f,"\n%s",newword);
+    }
+    if(tolower(choose) == 'n'){
+        exit(1);
+    }
 }
 
 int main()
