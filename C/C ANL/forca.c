@@ -289,7 +289,7 @@ void addword(){
         f = fopen("words.txt","r+");
 
         if(f == 0){
-            printf("Impossível abrir o arquivo\n");
+            printf("Can't open the words file\n");
             exit(1);
         }
 
