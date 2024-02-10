@@ -1,64 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include "map.h"
 #include "fogeheader.h"
 
-char **map;
-int lines, columns;
+Map map;
 
-typedef struct
-{
-    int x, y;
+Charapter charapter;
 
-} charapter;
 
-void allocmap()
-{
-    // part of code to dynamic alloc the map
-    map = malloc(sizeof(char *) * lines);
-    for (int i = 0; i < lines; i++)
-    {
-        map[i] = malloc(sizeof(char) * (columns + 1));
-    }
-}
-
-void readmap()
-{
-    FILE *f;
-    f = fopen("map.txt", "r");
-    if (!f)
-    {
-        printf("Can't open the map file\n");
-        exit(1);
-    }
-
-    fscanf(f, "%d %d", &lines, &columns);
-
-    allocmap();
-
-    for (int i = 0; i < lines; i++)
-    {
-        fscanf(f, "%s", map[i]);
-    }
-    fclose(f);
-}
-
-void freememory()
-{
-    for (int i = 0; i < lines; i++)
-    {
-        free(map[i]);
-    }
-    free(map);
-}
-
-void printgame()
-{
-    for (int i = 0; i < lines; i++)
-    {
-        printf("%s\n", map[i]);
-    }
-}
 
 int endgame()
 {
@@ -71,11 +21,11 @@ void move(char movement)
 {
     int x, y;
 
-    for (int i = 0; i < lines; i++)
+    for (int i = 0; i < map.lines; i++)
     {
-        for (int j = 0; j < columns; j++)
+        for (int j = 0; j < map.columns; j++)
         {
-            if (map[i][j] == '@')
+            if (map.matriz[i][j] == '@')
             {
                 x = i;
                 y = j;
@@ -87,20 +37,20 @@ void move(char movement)
     switch (movement)
     {
     case 'w':
-        map[x - 1][y] = '@';
-        map[x][y] = '.';
+        map.matriz[x - 1][y] = '@';
+        map.matriz[x][y] = '.';
         break;
     case 'a':
-        map[x][y - 1] = '@';
-        map[x][y] = '.';
+        map.matriz[x][y - 1] = '@';
+        map.matriz[x][y] = '.';
         break;
     case 's':
-        map[x + 1][y] = '@';
-        map[x][y] = '.';
+        map.matriz[x + 1][y] = '@';
+        map.matriz[x][y] = '.';
         break;
     case 'd':
-        map[x][y + 1] = '@';
-        map[x][y] = '.';
+        map.matriz[x][y + 1] = '@';
+        map.matriz[x][y] = '.';
 
         break;
     }
