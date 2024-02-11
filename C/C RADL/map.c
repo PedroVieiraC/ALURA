@@ -1,15 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
 
-void allocmap()
+#include "fogeheader.h"
+#include "map.h"
+
+void allocmap(Map* map)
 {
     // part of code to dynamic alloc the map
-    map.matriz = malloc(sizeof(char *) * map.lines);
-    for (int i = 0; i < map.lines; i++)
+    map->matriz = malloc(sizeof(char *) * map->lines);
+    for (int i = 0; i < map->lines; i++)
     {
-        map.matriz[i] = malloc(sizeof(char) * (map.columns + 1));
+        map->matriz[i] = malloc(sizeof(char) * (map->columns + 1));
     }
 }
 
-void readmap()
+void readmap(Map* map)
 {
     FILE *f;
     f = fopen("map.txt", "r");
@@ -19,30 +24,30 @@ void readmap()
         exit(1);
     }
 
-    fscanf(f, "%d %d", &(map.lines), &(map.columns));
+    fscanf(f, "%d %d", &(map->lines), &(map->columns));
 
-    allocmap();
+    allocmap(map);
 
-    for (int i = 0; i < map.lines; i++)
+    for (int i = 0; i < map->lines; i++)
     {
-        fscanf(f, "%s", map.matriz[i]);
+        fscanf(f, "%s", map->matriz[i]);
     }
     fclose(f);
 }
 
-void freememory()
+void freememory(Map* map)
 {
-    for (int i = 0; i < map.lines; i++)
+    for (int i = 0; i < map->lines; i++)
     {
-        free(map.matriz[i]);
+        free(map->matriz[i]);
     }
-    free(map.matriz);
+    free(map->matriz);
 }
 
-void printgame()
+void printgame(Map* map)
 {
-    for (int i = 0; i < map.lines; i++)
+    for (int i = 0; i < map->lines; i++)
     {
-        printf("%s\n", map.matriz[i]);
+        printf("%s\n", map->matriz[i]);
     }
 }

@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+
 #include "map.h"
+#include "map.c"
 #include "fogeheader.h"
 
 Map map;
@@ -62,19 +64,19 @@ void move(char movement)
 
 int main()
 {
-    readmap();
+    readmap(&map);
 
     do
     {
-        printgame();
+        printgame(&map);
 
         char command;
         scanf(" %c", &command);
         move(tolower(command));
 
-    } while (!endgame());
+    } while (!endgame(&map));
 
-    freememory();
+    freememory(&map);
 
     return 0;
 }
