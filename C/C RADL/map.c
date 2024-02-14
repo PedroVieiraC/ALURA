@@ -4,7 +4,43 @@
 #include "fogeheader.h"
 #include "map.h"
 
-void allocmap(Map* map)
+int emptyposition(Map *map, int nextx, int nexty){
+    return map->matriz[nextx][nexty] == EMPTY;
+    
+}
+
+int canmove(char movement)
+{
+    if (movement == UP ||
+        movement == LEFT ||
+        movement == RIGHT ||
+        movement == DOWN)
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+void movecharapter(Map* map, Charapter* charapter,int nextx, int nexty){
+    map->matriz[nextx][nexty] = HERO;
+    map->matriz[charapter->x][charapter->y] = EMPTY;
+    charapter->x = nextx;
+    charapter->y = nexty;
+}
+
+int movelimits(Map *map, int nextx, int nexty)
+{
+    if (nextx >= map->lines)
+        return 0;
+
+    if (nexty >= map->columns)
+        return 0;
+    
+    return 1;
+}
+
+void allocmap(Map *map)
 {
     // part of code to dynamic alloc the map
     map->matriz = malloc(sizeof(char *) * map->lines);
@@ -14,7 +50,23 @@ void allocmap(Map* map)
     }
 }
 
-void readmap(Map* map)
+void foundmap(Map *map, Charapter *charapter, char f)
+{
+    for (int i = 0; i < map->lines; i++)
+    {
+        for (int j = 0; j < map->columns; j++)
+        {
+            if (map->matriz[i][j] == f)
+            {
+                charapter->x = i;
+                charapter->y = j;
+                break;
+            }
+        }
+    }
+}
+
+void readmap(Map *map)
 {
     FILE *f;
     f = fopen("map.txt", "r");
@@ -35,7 +87,7 @@ void readmap(Map* map)
     fclose(f);
 }
 
-void freememory(Map* map)
+void freememory(Map *map)
 {
     for (int i = 0; i < map->lines; i++)
     {
@@ -44,7 +96,7 @@ void freememory(Map* map)
     free(map->matriz);
 }
 
-void printgame(Map* map)
+void printgame(Map *map)
 {
     for (int i = 0; i < map->lines; i++)
     {

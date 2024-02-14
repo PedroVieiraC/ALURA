@@ -10,8 +10,6 @@ Map map;
 
 Charapter charapter;
 
-
-
 int endgame()
 {
     int end = 0;
@@ -19,52 +17,52 @@ int endgame()
     return end;
 }
 
+void ghosts(){
+    
+}
+
 void move(char movement)
 {
-    int x, y;
 
-    for (int i = 0; i < map.lines; i++)
-    {
-        for (int j = 0; j < map.columns; j++)
-        {
-            if (map.matriz[i][j] == '@')
-            {
-                x = i;
-                y = j;
-                break;
-            }
-        }
-    }
+    if (!canmove(movement))
+        return;
+
+    int nextx = charapter.x;
+    int nexty = charapter.y;
 
     switch (movement)
     {
-    case 'w':
-        map.matriz[x - 1][y] = '@';
-        map.matriz[x][y] = '.';
-        break;
-    case 'a':
-        map.matriz[x][y - 1] = '@';
-        map.matriz[x][y] = '.';
-        break;
-    case 's':
-        map.matriz[x + 1][y] = '@';
-        map.matriz[x][y] = '.';
-        break;
-    case 'd':
-        map.matriz[x][y + 1] = '@';
-        map.matriz[x][y] = '.';
+    case UP:
 
+        nextx--;
+        break;
+    case LEFT:
+
+        nexty--;
+        break;
+    case DOWN:
+
+        nextx++;
+        break;
+    case RIGHT:
+
+        nexty++;
         break;
     }
 
+    if (!movelimits(&map, nextx, nexty))
+        return;
 
+    if (!emptyposition(&map, nextx, nexty))
+        return;
 
-    // printf("%d %d\n",x+1,y+1);
+    movecharapter(&map, &charapter, nextx, nexty);
 }
 
 int main()
 {
     readmap(&map);
+    foundmap(&map, &charapter, HERO);
 
     do
     {
