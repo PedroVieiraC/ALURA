@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <time.h>
 
 #include "map.h"
 #include "map.c"
@@ -12,13 +13,57 @@ Charapter charapter;
 
 int endgame()
 {
-    int end = 0;
-    // scanf("%i", &end);
-    return end;
+    Charapter pos;
+    int found = foundmap(&map, &charapter, HERO);
+    return !found;
 }
 
-void ghosts(){
-    
+int whereghost(int x, int y, int *nextx, int *nexty)
+{
+    int moves[4][2] = {
+        {x, y + 1}, // w
+        {x - 1, y}, // a
+        {x, y - 1}, // s
+        {x + 1, y}, // d
+    };
+
+    srand(time(0));
+    for (int i = 0; i < 10; i++)
+    {
+        int move = rand() % 4;
+
+        if (validmovement(&map, GHOST, moves[move][0], moves[move][1]))
+        {
+            *nextx = moves[move][0];
+            *nexty = moves[move][1];
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void ghosts()
+{
+    Map mapcopy;
+
+    copymap(&mapcopy, &map);
+
+    for (int i = 0; i < map.lines; i++)
+    {
+        for (int j = 0; j < map.columns; j++)
+        {
+            if (mapcopy.matriz[i][j] == GHOST)
+            {
+
+                int nextx, nexty;
+                int found = whereghost(i, j, &nextx, &nexty);
+
+                if (found)
+                    moveelement(&map, i, j, nextx, nexty, NULL);
+            }
+        }
+    }
+    freememory(&mapcopy);
 }
 
 void move(char movement)
@@ -50,13 +95,10 @@ void move(char movement)
         break;
     }
 
-    if (!movelimits(&map, nextx, nexty))
+    if (!validmovement(&map, HERO, nextx, nexty))
         return;
 
-    if (!emptyposition(&map, nextx, nexty))
-        return;
-
-    movecharapter(&map, &charapter, nextx, nexty);
+    moveelement(&map, charapter.x, charapter.y, nextx, nexty, &charapter);
 }
 
 int main()
@@ -71,8 +113,10 @@ int main()
         char command;
         scanf(" %c", &command);
         move(tolower(command));
-
+        ghosts();
     } while (!endgame(&map));
+
+    printf("colidiu\n");
 
     freememory(&map);
 

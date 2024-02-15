@@ -27,10 +27,16 @@ void allocmap();
 void readmap();
 void freememory();
 void printgame();
-void foundmap(Map *map, Charapter *charapter, char f);
+
+int foundmap(Map *map, Charapter *charapter, char f);
+
+int iswall(Map *map, int x, int y);
 int movelimits(Map *map, int nextx, int nexty);
-int emptyposition(Map *map, int nextx, int nexty);
 int canmove(char movement);
+int emptyposition(Map *map, int nextx, int nexty);
+int validmovement(Map *map, char hero, int x, int y);
+
 void movecharapter(Map *map, Charapter *charapter, int nextx, int nexty);
+void copymap(Map* mapcopy,Map* ogmap);
 
 #endif /* MAP_H */
