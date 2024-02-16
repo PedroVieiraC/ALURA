@@ -65,7 +65,7 @@ int canmove(char movement)
     return 0;
 }
 
-void moveelement(Map *map, int x, int y, int nextx, int nexty, Charapter *charapter)
+void moveelement(Map *map, int x, int y, int nextx, int nexty, Coordinates *charapter)
 {
     char aux = map->matriz[x][y];
     map->matriz[nextx][nexty] = aux;
@@ -88,7 +88,7 @@ void allocmap(Map *map)
     }
 }
 
-int foundmap(Map *map, Charapter *charapter, char f)
+int foundmap(Map *map, Coordinates *charapter, char f)
 {
     for (int i = 0; i < map->lines; i++)
     {

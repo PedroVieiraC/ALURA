@@ -9,12 +9,14 @@
 
 Map map;
 
-Charapter charapter;
+Coordinates hero;
+
+Powerups powerups;
 
 int endgame()
 {
-    Charapter pos;
-    int found = foundmap(&map, &charapter, HERO);
+    Coordinates pos;
+    int found = foundmap(&map, &pos, HERO);
     return !found;
 }
 
@@ -72,8 +74,8 @@ void move(char movement)
     if (!canmove(movement))
         return;
 
-    int nextx = charapter.x;
-    int nexty = charapter.y;
+    int nextx = hero.x;
+    int nexty = hero.y;
 
     switch (movement)
     {
@@ -98,22 +100,63 @@ void move(char movement)
     if (!validmovement(&map, HERO, nextx, nexty))
         return;
 
-    moveelement(&map, charapter.x, charapter.y, nextx, nexty, &charapter);
+    if (ischarapter(&map, BOMB, nextx, nexty))
+    {
+        powerups.bomb = 1;
+    }
+
+    moveelement(&map, hero.x, hero.y, nextx, nexty, &hero);
+}
+
+void blows()
+{
+
+    for (int i = hero.x - 1; i <= hero.x+1; i++)
+    {
+        for (int j = hero.y - 1; j <= hero.y+1; j++)
+        {
+            if(map.matriz[i][j] == '@') j++;
+
+            if (movelimits(&map, i, j))
+            {
+                if (iswall(&map, i, j))
+                {
+                    break;
+                }
+                printf("%i %i\n", i+1, j+1);
+            
+                 map.matriz[i][j] = EMPTY;
+            }
+        }
+    }
+}
+
+void powerup(char command)
+{
+    if (command == BLOW)
+    {
+        blows();
+    }
 }
 
 int main()
 {
     readmap(&map);
-    foundmap(&map, &charapter, HERO);
+    foundmap(&map, &hero, HERO);
 
     do
     {
+
+        printf("bomb %i\n", powerups.bomb);
+
         printgame(&map);
 
         char command;
         scanf(" %c", &command);
         move(tolower(command));
+        powerup(tolower(command));
         ghosts();
+
     } while (!endgame(&map));
 
     printf("colidiu\n");
