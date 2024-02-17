@@ -3,9 +3,13 @@
 #include <ctype.h>
 #include <time.h>
 
-#include "map.h"
-#include "map.c"
 #include "fogeheader.h"
+
+#include "map.c"
+#include "map.h"
+
+#include "ui.c"
+#include "ui.h"
 
 Map map;
 
@@ -111,21 +115,22 @@ void move(char movement)
 void blows()
 {
 
-    for (int i = hero.x - 1; i <= hero.x+1; i++)
+    for (int i = hero.x - 1; i <= hero.x + 1; i++)
     {
-        for (int j = hero.y - 1; j <= hero.y+1; j++)
+        for (int j = hero.y - 1; j <= hero.y + 1; j++)
         {
-            if(map.matriz[i][j] == '@') j++;
+            if (map.matriz[i][j] == '@')
+                j++;
 
             if (movelimits(&map, i, j))
             {
                 if (iswall(&map, i, j))
                 {
-                    break;
+                    continue;
                 }
-                printf("%i %i\n", i+1, j+1);
-            
-                 map.matriz[i][j] = EMPTY;
+                printf("%i %i\n", i + 1, j + 1);
+
+                map.matriz[i][j] = EMPTY;
             }
         }
     }

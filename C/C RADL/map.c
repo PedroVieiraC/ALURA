@@ -134,11 +134,3 @@ void freememory(Map *map)
     }
     free(map->matriz);
 }
-
-void printgame(Map *map)
-{
-    for (int i = 0; i < map->lines; i++)
-    {
-        printf("%s\n", map->matriz[i]);
-    }
-}

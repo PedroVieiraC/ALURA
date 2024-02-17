@@ -39,7 +39,6 @@ typedef struct powerups Powerups;
 void allocmap();
 void readmap();
 void freememory();
-void printgame();
 
 int foundmap(Map *map, Coordinates *charapter, char f);
 
