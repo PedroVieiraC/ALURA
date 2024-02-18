@@ -51,4 +51,4 @@ int validmovement(Map *map, char hero, int x, int y);
 void movecharapter(Map *map, Coordinates *charapter, int nextx, int nexty);
 void copymap(Map* mapcopy,Map* ogmap);
 
-#endif /* MAP_H */
+#endif 

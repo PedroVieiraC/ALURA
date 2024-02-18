@@ -1,3 +1,6 @@
+#ifndef FOGE_H
+#define FOGE_H
+
 #define UP 'w'
 #define LEFT 'a'
 #define RIGHT 'd'
@@ -14,3 +17,5 @@ int whereghost(int x, int y, int* nextx, int* nexty);
 
 void powerup(char command);
 void blows();
+
+#endif
