@@ -7,4 +7,13 @@
 
 void printgame(Map *map);
 
+void lose();
+void won();
+
+void welcome();
+
+void rules();
+
+int dif();
+
 #endif

@@ -17,11 +17,25 @@ Coordinates hero;
 
 Powerups powerups;
 
+void playagain(){
+    printf("Press any key to back to menu\n");
+    char any;
+    scanf(" %c",&any);
+    main();
+}
+
 int endgame()
 {
     Coordinates pos;
     int found = foundmap(&map, &pos, HERO);
-    return !found;
+    int foundenemyes = foundmap(&map, &pos, GHOST);
+
+    if (!found)
+        died();
+    if (!foundenemyes)
+        won();
+
+    return !found || !foundenemyes;
 }
 
 int whereghost(int x, int y, int *nextx, int *nexty)
@@ -110,6 +124,7 @@ void move(char movement)
     }
 
     moveelement(&map, hero.x, hero.y, nextx, nexty, &hero);
+    powerups.movecounter++;
 }
 
 void blows()
@@ -119,7 +134,7 @@ void blows()
     {
         for (int j = hero.y - 1; j <= hero.y + 1; j++)
         {
-            if (map.matriz[i][j] == '@')
+            if (map.matriz[i][j] == HERO)
                 j++;
 
             if (movelimits(&map, i, j))
@@ -128,17 +143,16 @@ void blows()
                 {
                     continue;
                 }
-                printf("%i %i\n", i + 1, j + 1);
-
                 map.matriz[i][j] = EMPTY;
             }
         }
     }
+    powerups.bomb = 0;
 }
 
 void powerup(char command)
 {
-    if (command == BLOW)
+    if (command == BLOW && powerups.bomb == 1)
     {
         blows();
     }
@@ -148,7 +162,11 @@ int main()
 {
     readmap(&map);
     foundmap(&map, &hero, HERO);
+    welcome();
 
+    int diff = dif(); 
+    
+    randomspawn(&map, diff);
     do
     {
 
@@ -159,12 +177,15 @@ int main()
         char command;
         scanf(" %c", &command);
         move(tolower(command));
+
         powerup(tolower(command));
+        powerspawn(&map, &powerups);
+
         ghosts();
 
     } while (!endgame(&map));
 
-    printf("colidiu\n");
+    playagain();
 
     freememory(&map);
 

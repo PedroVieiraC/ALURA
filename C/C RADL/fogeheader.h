@@ -15,6 +15,9 @@ void ghosts();
 int whereghost(int x, int y, int* nextx, int* nexty);
 
 
+void playagain();
+int main();
+
 void powerup(char command);
 void blows();
 

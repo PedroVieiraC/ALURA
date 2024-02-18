@@ -78,6 +78,60 @@ void moveelement(Map *map, int x, int y, int nextx, int nexty, Coordinates *char
     charapter->y = nexty;
 }
 
+void randomspawn(Map *map, int dif)
+{
+    int gc = 0, gl;
+    switch (dif)
+    {
+    case 1:
+        gl = 1;
+        break;
+    case 2:
+        gl = 3;
+        break;
+    case 3:
+        gl = 5;
+        break;
+    default:
+        gl = 5;
+        break;
+    }
+
+    while (gc < gl)
+    {
+        srand(time(0));
+        int rande = rand() % lowerlimit(map);
+        int rande2 = rand() % lowerlimit(map);
+
+        if (emptyposition(map, rande, rande2))
+        {
+            map->matriz[rande][rande2] = GHOST;
+            gc++;
+        }
+    }
+}
+
+
+void powerspawn(Map *map, Powerups *powerups)
+{
+    if (powerups->movecounter % 4 == 0)
+    {
+        int npu = rand() % lowerlimit(map);
+        if (emptyposition(map, npu, npu))
+        {
+            map->matriz[npu][npu] = BOMB;
+        }
+    }
+}
+
+int lowerlimit(Map *map)
+{
+    if (map->lines > map->columns)
+        return map->columns;
+
+    return map->lines;
+}
+
 void allocmap(Map *map)
 {
     // part of code to dynamic alloc the map

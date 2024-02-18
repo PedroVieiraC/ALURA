@@ -23,9 +23,7 @@ struct hero
 struct powerups
 {
     int bomb;
-    int pill;
-
-
+    int movecounter;
 };
 
 
@@ -43,12 +41,17 @@ void freememory();
 int foundmap(Map *map, Coordinates *charapter, char f);
 
 int iswall(Map *map, int x, int y);
-int movelimits(Map *map, int nextx, int nexty);
 int canmove(char movement);
+int movelimits(Map *map, int nextx, int nexty);
 int emptyposition(Map *map, int nextx, int nexty);
 int validmovement(Map *map, char hero, int x, int y);
 
+int lowerlimit(Map *map);
+void randomspawn(Map* map, int dif);
+void powerspawn(Map* map, Powerups* powerups);
+
 void movecharapter(Map *map, Coordinates *charapter, int nextx, int nexty);
+
 void copymap(Map* mapcopy,Map* ogmap);
 
 #endif 
