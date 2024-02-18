@@ -97,9 +97,9 @@ void randomspawn(Map *map, int dif)
         break;
     }
 
+    srand(time(0));
     while (gc < gl)
     {
-        srand(time(0));
         int rande = rand() % lowerlimit(map);
         int rande2 = rand() % lowerlimit(map);
 
