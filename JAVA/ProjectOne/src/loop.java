@@ -13,7 +13,7 @@ public class loop {
             averageRating += rate;
         }
 
-        System.out.println(averageRating/3);
+            System.out.println(averageRating/3);
     }
 }
 
