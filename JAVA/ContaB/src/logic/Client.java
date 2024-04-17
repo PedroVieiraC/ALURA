@@ -11,6 +11,19 @@ public class Client {
         this.accountType = accountType;
     }
 
+    public String acType(int i) {
+        return switch (i) {
+            case 1:
+                yield "Checking";
+
+            case 2:
+                yield "Savings";
+
+            default:
+                yield "null";
+        };
+    }
+
     public float getBalance() {
         return balance;
     }

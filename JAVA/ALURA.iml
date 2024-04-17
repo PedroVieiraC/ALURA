@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/ContaB/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ProjectOne/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />

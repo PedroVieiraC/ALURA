@@ -1,19 +1,14 @@
 package ifa;
-import datas.*;
-import ifa.*;
 import logic.Client;
-
-import java.util.Scanner;
+import logic.Control;
 
 public class Main {
-    Welcome welcome = new Welcome();
-    Client client = new Client(4200, "Jorge", 1);
-    Scanner scan = new Scanner(System.in);
-
-public static void main(String[] args) {
-    System.out.println("gel");
-    //welcome.start(client);
-
+    static Client Jorge = new Client(15250,"Jorge", 1);
+    static Control control = new Control(Jorge);
+    static Welcome welcome = new Welcome(control,Jorge);
+    public static void main(String[] args) {
+        welcome.start();
 
     }
+
 }
