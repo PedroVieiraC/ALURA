@@ -5,27 +5,22 @@ public class Music extends Audio{
     private String singer;
     private String gender;
 
-    public String getAlbum() {
-        return album;
+    public Music(String album, String singer, String gender) {
+        this.album = album;
+        this.singer = singer;
+        this.gender = gender;
     }
 
-    public void setAlbum(String album) {
-        this.album = album;
+    public String getAlbum() {
+        return album;
     }
 
     public String getSinger() {
         return singer;
     }
 
-    public void setSinger(String singer) {
-        this.singer = singer;
-    }
-
     public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
 }
