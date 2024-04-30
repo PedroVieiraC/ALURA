@@ -1,4 +1,6 @@
-package vieira.pedro.screenmatch.calculus;
+package vieirapedro.screenmatch.calculus;
+
+import vieirapedro.screenmatch.calculus.Classified;
 
 public class Recomends {
 

@@ -1,4 +1,4 @@
-package vieira.pedro.screenmatch.model;
+package vieirapedro.screenmatch.model;
 
 public class Title {
     private String name;

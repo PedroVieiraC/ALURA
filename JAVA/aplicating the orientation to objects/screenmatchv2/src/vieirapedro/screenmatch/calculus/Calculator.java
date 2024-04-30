@@ -1,6 +1,6 @@
-package vieira.pedro.screenmatch.calculus;
+package vieirapedro.screenmatch.calculus;
 
-import vieira.pedro.screenmatch.model.*;
+import vieirapedro.screenmatch.model.*;
 
 public class Calculator {
     private int totalTime;

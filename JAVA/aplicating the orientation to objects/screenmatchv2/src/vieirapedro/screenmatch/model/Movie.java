@@ -1,6 +1,6 @@
-package vieira.pedro.screenmatch.model;
+package vieirapedro.screenmatch.model;
 
-import vieira.pedro.screenmatch.calculus.Classified;
+import vieirapedro.screenmatch.calculus.Classified;
 
 public class Movie extends Title implements Classified {
     public String director;

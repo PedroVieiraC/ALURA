@@ -1,8 +1,5 @@
-import vieira.pedro.screenmatch.calculus.Calculator;
-import vieira.pedro.screenmatch.calculus.Recomends;
-import vieira.pedro.screenmatch.model.Episode;
-import vieira.pedro.screenmatch.model.Movie;
-import vieira.pedro.screenmatch.model.Serie;
+import vieirapedro.screenmatch.calculus.*;
+import vieirapedro.screenmatch.model.*;
 
 public class Main {
     static Movie movie = new Movie("Top Gun", 1988, false, 142);

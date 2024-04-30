@@ -1,6 +1,6 @@
-package vieira.pedro.screenmatch.model;
+package vieirapedro.screenmatch.model;
 
-import vieira.pedro.screenmatch.calculus.Classified;
+import vieirapedro.screenmatch.calculus.Classified;
 
 public class Serie extends Title implements Classified {
     private int seasons;
