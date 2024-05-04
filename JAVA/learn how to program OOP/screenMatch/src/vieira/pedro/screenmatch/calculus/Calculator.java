@@ -9,10 +9,6 @@ public class Calculator {
         return totalTime;
     }
 
-    public void setTotalTime(int totalTime) {
-        this.totalTime = totalTime;
-    }
-
     public void include(Title title){
         this.totalTime += title.getTime();
     }

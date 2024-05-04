@@ -1,6 +1,6 @@
 package vieira.pedro.screenmatch.model;
 
-public class Title {
+public class Title implements Comparable<Title>{
     private String name;
     private int launchYear;
     private boolean plan;
@@ -63,11 +63,6 @@ public class Title {
         this.time = time;
     }
 
-    public void showDetails() {
-        System.out.println("br.com.alura.screenmatch.model.Movie name: " + name);
-        System.out.println("Launch year: " + launchYear);
-    }
-
     public void rating(double rate) {
         this.rate += rate;
         rateQuantity++;
@@ -77,5 +72,15 @@ public class Title {
         return rate / rateQuantity;
     }
 
+    @Override
+    public String toString() {
+        return ("Title: " + this.getName() + " (" + this.getLaunchYear() + ")");
+    }
+
+
+    @Override
+    public int compareTo(Title o) {
+        return this.getName().compareTo(o.getName());
+    }
 }
 
