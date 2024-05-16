@@ -1,11 +1,15 @@
 package vieira.pedro.model;
 
+import com.google.gson.annotations.SerializedName;
+import vieira.pedro.exception.ConversionExcept;
+
 public class Title implements Comparable<Title> {
     private String name;
     private int launchYear;
     private boolean plan;
     private double rate;
     private int rateQuantity;
+
     private int time;
 
     public Title(String name, int launchYear, boolean plan, int time) {
@@ -13,6 +17,16 @@ public class Title implements Comparable<Title> {
         this.launchYear = launchYear;
         this.plan = plan;
         this.time = time;
+    }
+
+    public Title(TitleOmdb title) {
+        this.name = title.title();
+        if(title.year().length() > 4){
+            throw new ConversionExcept("Cant write the year, more than 4 caracters");
+        }
+        this.launchYear = Integer.valueOf(title.year());
+        this.time = Integer.valueOf(title.runtime().substring(0,2));
+
     }
 
     public String getName() {
@@ -74,7 +88,9 @@ public class Title implements Comparable<Title> {
 
     @Override
     public String toString() {
-        return ("Title: " + this.getName() + " (" + this.getLaunchYear() + ")");
+        return ("Title: " + this.getName() + " (" + this.getLaunchYear() + ")"
+                + " runtime: " + time + " minutes")
+                ;
     }
 
 
