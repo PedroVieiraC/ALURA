@@ -1,0 +1,103 @@
+103
+Maca
+Mesa
+Cachorro
+Livro
+Caneta
+Bola
+Computador
+Telefone
+Cadeira
+Carro
+Guitarra
+Arvore
+Sapato
+Lapis
+Televisao
+Relogio
+Camiseta
+Chapeu
+Colher
+Xicara
+Abacaxi
+Aviao
+Banana
+Queijo
+Guarda-chuva
+Oculos
+Martelo
+Faca
+Garfo
+Sofa
+Travesseiro
+Papel
+Vaso
+Escova
+Pente
+Escova de dentes
+Espelho
+Janela
+Porta
+Computador
+Monitor
+Mouse
+Teclado
+Ratoeira
+Lampada
+Cachecol
+Camisola
+Cobertor
+Frigideira
+Espatula
+Fogao
+Geladeira
+Vassoura
+Livro
+Jornal
+Revista
+Tesoura
+Cinto
+Meia
+Gravata
+Bolsa
+Carteira
+Brinco
+Anel
+Pulseira
+Colar
+Escova de cabelo
+Regua
+Agenda
+Lapis de cor
+Borracha
+Caderno
+Compasso
+Caneta
+Calculadora
+Fita adesiva
+Papel higienico
+Sabonete
+Xampu
+Condicionador
+Esponja
+Detergente
+Toalha
+Rolo de papel toalha
+Almofada
+Cama
+Travesseiro
+Edredom
+Mochila
+Estojo
+Teia de aranha
+Sapateira
+Cesto de roupa suja
+Tapete
+Alicate
+Chave de fenda
+Chave inglesa
+Martelo
+Parafuso
+Pregador de roupa
+jujuba
+teste
