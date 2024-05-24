@@ -1,70 +1,96 @@
-*{
-    margin: 0;
-    padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Alata&family=Poetsen+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alata&family=Poetsen+One&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    height: 100vh;
-    width: 100%;
-    box-sizing: border-box;
-  background-color: white;
-  color: darkgray;
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  color: #faa916;
+  font-family: Arial, sans-serif;
 }
 
-head {
-  background-color: white;
+header {
+  margin: 3%;
   color: white;
+  text-align: center;
 }
 
-.titulo {
-  color: aqua;
+.apresentacao__titulo {
   color: #22d4fd;
-  /*border: 1px solid #22d4fd;*/
   padding: 10px;
+  font-size: 40px;
 }
 
-.Javalang{
-    display: flex;
+.linguagens {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+  margin: 3%;
 }
 
-.Clang{
-    display: flex; 
-    align-items: center;
+.linguagem__java,
+.linguagem__c {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.contatos {
-  color: aqua;
-  color: #22d4fd;
-  border: 1px solid #22d4fd;
-  padding: 10px;
+.linguagemjava__texto,
+.linguagemc__texto {
+  width: 40%;
 }
-.apresentacao{
-    display: flex;
-}
-.linguagens{
-    display: flex;
-    flex-direction: column;
+
+.linguagemjava__logo,
+.linguagemc__logo {
+  height: 200px;
+  width: auto;
+  margin-left: 20px;
 }
 
 footer {
   background-color: white;
-  color: white;
+  color: #22d4fd;
+  text-align: center;
+  padding: 10px;
 }
+
+.contatos {
+  border: 1px solid #22d4fd;
+  padding: 10px;
+  display: inline-block;
+}
+
 h1 {
-  color: rgb(0, 0, 0);
+  font-family: "Alata", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
+
 p {
-  color: rgb(201, 21, 21);
-}
-
-a {
-  color: gray;
-}
-
-button {
-  background-color: cyan;
+  font-family: "Source Serif 4", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
   color: white;
-  border: none;
 }
-img {
+
+.contatos_github {
+  display: flex;
+  background-color: #22d4fd;
+  width: 280px;
+  text-align: center;
+  border-radius: 16px;
+  font-size: 24px;
+  padding: 21.5px 0;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 20px;
 }
