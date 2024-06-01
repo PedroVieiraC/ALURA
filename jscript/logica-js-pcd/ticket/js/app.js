@@ -6,7 +6,7 @@ function comprar() {
 
 function buy(qtt, zone){
     let text = document.getElementById(`qtd-${zone}`);  
-    let tickets = document.getElementById(`qtd-${zone}`).textContent;
+    let tickets = parseInt(text.textContent);
     if(!alerts(qtt, tickets)) return;
     tickets -= qtt;
     text.innerHTML = `${tickets}`;    
@@ -19,3 +19,5 @@ function alerts(qtt, tickets){
     }
     return true;
 }
+
+
