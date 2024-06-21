@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createGlobalStyle, createGlobalStyle } from 'styled-components';
+import { createGlobalStyle} from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 body {

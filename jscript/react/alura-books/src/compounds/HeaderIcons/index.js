@@ -1,4 +1,3 @@
-
 import profile from '../img/perfil.svg';
 import sacola from '../img/sacola.svg';
 import styled from 'styled-components';
@@ -14,15 +13,15 @@ const Icons = styled.ul`
     align-items: center;
 `
 
-const icons = [profile,sacola];
+const icons = [profile, sacola];
 
-function HeaderIcons(){
+function HeaderIcons() {
     return (
-    <Icons>
-        {icons.map((icon) => (
-          <Icon><img src = {icon} alt = 'icon'></img>  </Icon>
-        ))}
-      </Icons>
+        <Icons>
+            {icons.map((icon, index) => (
+                <Icon key={index}><img src={icon} alt='icon' /></Icon>
+            ))}
+        </Icons>
     )
 }
 

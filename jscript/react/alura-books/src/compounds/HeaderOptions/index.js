@@ -17,11 +17,12 @@ const Option = styled.li`
 `;
 
 const optionsText = ["CATEGORIES", "FAVORITES", "BOOKSHELF"];
+
 function HeaderOptions() {
   return (
     <Options>
-      {optionsText.map((text) => (
-        <Option><p> {text} </p></Option>
+      {optionsText.map((text, index) => (
+        <Option key={index}><p>{text}</p></Option>
       ))}
     </Options>
   );
