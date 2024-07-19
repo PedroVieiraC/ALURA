@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body{
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: black;
+    color:white;
+    font-size: 15px;
+}
+
+main > h1{
+    font-size: 25px;
+}
+
+main > h1 >.bluetitle{
+    font-size: 1em;
+    color: #22D4FD;
+}
+
+.t{
+    padding-top: 40px;
+    font-size: 2em;
+}
+
+.tf{
+    font-size: 30px;
+}
+
+.tp{
+    font-size: 1em;
+}
+
+.tff{
+    font-size: 1em;
+}

@@ -1,0 +1,14 @@
+.t{
+  font-size: 40px;
+}
+
+.tp{
+  font-size: 2em;
+}
+.tf{
+  font-size: 2em;
+}
+
+.tf > strong{
+  font-size: 2em;
+}
